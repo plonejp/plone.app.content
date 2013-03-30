@@ -28,19 +28,6 @@ possible_constrain_types = SimpleVocabulary(
      ])
 
 
-class ValidTypes(object):
-    implements(IVocabularyFactory)
-
-    def __call__(self, context):
-        constrain_aspect = ISelectableConstrainTypes(context)
-        items = []
-        for type_ in constrain_aspect.getDefaultAddableTypes():
-            items.append(SimpleTerm(value=type_.getId(), title=type_.Title()))
-        return SimpleVocabulary(items)
-
-ValidTypesFactory = ValidTypes()
-
-
 class IConstrainForm(Interface):
 
     constrain_types_mode = Choice(
@@ -91,9 +78,7 @@ class IConstrainForm(Interface):
 
 class FormContentAdapter(object):
     """
-    Adapter to allow z3c.form to store the right values on the content.
-    WARNING! This Adapter cannot change invariants.
-    It is up to YOU to do this in your safe handler!
+    Adapter to allow z3c.form to read the right values from the content.
     """
     def __init__(self, context):
         self.context = ISelectableConstrainTypes(context)
@@ -102,29 +87,15 @@ class FormContentAdapter(object):
     def constrain_types_mode(self):
         return self.context.getConstrainTypesMode()
 
-    @constrain_types_mode.setter
-    def constrain_types_mode(self, value):
-        self.context.setConstrainTypesMode(value)
-
     @property
     def allow(self):
         return self.context.getLocallyAllowedTypes()
-
-    @allow.setter
-    def allow(self, value):
-        self.context.setLocallyAllowedTypes(value)
 
     @property
     def allow_2nd_step(self):
         immediately_allowed = self.context.getImmediatelyAddableTypes()
         return [t for t in self.context.getLocallyAllowedTypes()
                 if t not in immediately_allowed]
-
-    @allow_2nd_step.setter
-    def allow_2nd_step(self, value):
-        locally_allowed = self.context.getLocallyAllowedTypes()
-        self.context.setImmediatelyAddableTypes([t for t in locally_allowed
-                                                 if t not in value])
 
 
 class ValidTypes(object):
@@ -143,10 +114,10 @@ ValidTypesFactory = ValidTypes()
 class ConstrainTypesView(AutoExtensibleForm, form.EditForm):
 
     schema = IConstrainForm
-    ignoreContext = False
     label = PC_("heading_set_content_type_restrictions",
                 default="Restrict what types of content can be added")
     template = ViewPageTemplateFile("templates/constraintypes.pt")
+    enableCSRFProtection = True
 
     def getContent(self):
         return ISelectableConstrainTypes(self.context)
