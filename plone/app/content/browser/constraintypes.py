@@ -13,8 +13,6 @@ from zope.schema import List, Choice
 from zope.schema.interfaces import IVocabularyFactory
 from zope.schema.vocabulary import SimpleVocabulary, SimpleTerm
 
-#XXX These constants should eventually be imported from the interfaces
-# but they will only be available there in 4.3b3
 ACQUIRE = -1  # acquire locallyAllowedTypes from parent (default)
 DISABLED = 0  # use default behavior of PortalFolder which uses the
               # FTI information
@@ -184,5 +182,6 @@ class ConstrainTypesView(AutoExtensibleForm, form.EditForm):
         aspect.setConstrainTypesMode(data['constrain_types_mode'])
         aspect.setLocallyAllowedTypes(locally_allowed_types)
         aspect.setImmediatelyAddableTypes(immediately_addable_types)
+
         contextURL = self.context.absolute_url()
         self.request.response.redirect(contextURL)

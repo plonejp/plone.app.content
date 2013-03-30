@@ -1,8 +1,8 @@
 Changelog
 =========
 
-2.1 (unreleased)
-----------------
+2.1.1 (unreleased)
+------------------
 
 - Reimplement the constraintypes form with z3c.form.
   [do3cc]
@@ -10,6 +10,26 @@ Changelog
 - Add provides marker to allow other packages provide features
   when this package with plip 13260 implementation is available
   [do3cc]
+
+- In the folder_contents view, assume a folderish context and set the base tag
+  with a trailing slash. Fixes https://dev.plone.org/ticket/13487
+  [danjacka]
+
+
+2.1 (2013-03-05)
+----------------
+
+- show a warning message on the folder contents view when
+  the default page is also a folder, that in order to add items
+  to the default page's folder, they'll need to visit it's
+  folder_contents view. also addresses https://dev.plone.org/ticket/9057
+  [vangheem]
+
+- on the folder_contents view, show the add menu for the
+  context object always. This fixes the issue when the
+  default view of a folder is also a folder and you
+  can not add items to it. fixes https://dev.plone.org/ticket/9057
+  [vangheem]
 
 
 2.1a2 (2012-10-16)
