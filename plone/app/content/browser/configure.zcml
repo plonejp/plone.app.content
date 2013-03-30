@@ -123,14 +123,6 @@
         permission="zope2.DeleteObjects"
         />
 
-    <!-- Discussion -->
-    <browser:page
-        for="*"
-        name="discussionitem_view"
-        template="templates/discussionitem_view.pt"
-        permission="zope2.View"
-        />
-
     <!-- Document View -->
     <browser:page
         for="*"
