@@ -78,6 +78,14 @@
         permission="cmf.AddPortalContent"
         />
 
+    <!-- Select default view -->
+    <browser:page
+        for="*"
+        name="select_default_view"
+        class=".default_view.DefaultViewSelectionView"
+        template="templates/select_default_view.pt"
+        permission="cmf.ReviewPortalContent" />
+
     <!-- Select default page view -->
     <browser:page
         for="*"
