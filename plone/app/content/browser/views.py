@@ -37,7 +37,8 @@ else:
     from plone.dexterity.interfaces import IDexterityFTI
     HAS_DEXTERITY = True
 
-from plone.app.content.browser.interfaces import IATCTFileFactory, IDXFileFactory
+from plone.app.content.browser.interfaces import IATCTFileFactory
+from plone.app.content.browser.interfaces import IDXFileFactory
 
 
 logger = logging.getLogger("plone.app.content")
@@ -117,8 +118,8 @@ class NewFolderContentsTable(FolderContentsTable):
         view_url = '%s/folder_contents?sort_on=%s&sort_order=%s' % (
             url, sort, order)
         self.table = NewTable(request, url, view_url, self.items,
-                           show_sort_column=self.show_sort_column,
-                           buttons=self.buttons)
+                              show_sort_column=self.show_sort_column,
+                              buttons=self.buttons)
         self.table.is_collection = _is_collection(self.context)
 
     @property
@@ -145,7 +146,7 @@ class NewFolderContentsView(FolderContentsView):
         if not self.orderable:
             messages = IStatusMessage(self.request)
             messages.add(u"This type of folder does not support ordering",
-                type=u"info")
+                         type=u"info")
         return super(NewFolderContentsView, self).__call__()
 
     def contents_table(self):
@@ -233,7 +234,7 @@ class Move(BrowserView):
     def __call__(self):
         ordering = getOrdering(self.context)
         authenticator = getMultiAdapter((self.context, self.request),
-            name=u"authenticator")
+                                        name=u"authenticator")
         if not authenticator.verify() or \
                 self.request['REQUEST_METHOD'] != 'POST':
             raise Unauthorized
@@ -246,14 +247,14 @@ class Move(BrowserView):
             ordering.moveObjectsToBottom([itemid])
         elif action == 'movedelta':
             ordering.moveObjectsByDelta([itemid],
-                int(self.request.form['delta']))
+                                        int(self.request.form['delta']))
         return 'done'
 
 
 class Sort(BrowserView):
     def __call__(self):
         authenticator = getMultiAdapter((self.context, self.request),
-            name=u"authenticator")
+                                        name=u"authenticator")
         if not authenticator.verify() or \
                 self.request['REQUEST_METHOD'] != 'POST':
             raise Unauthorized
@@ -278,7 +279,7 @@ class JUpload(BrowserView):
     """
     def __call__(self):
         authenticator = getMultiAdapter((self.context, self.request),
-            name=u"authenticator")
+                                        name=u"authenticator")
         if not authenticator.verify() or \
                 self.request['REQUEST_METHOD'] != 'POST':
             raise Unauthorized
@@ -341,4 +342,3 @@ class JUpload(BrowserView):
         return json.dumps({
             'files': [result]
         })
-
