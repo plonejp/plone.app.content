@@ -50,55 +50,55 @@
       </style>
 
     </metal:css>
-    <metal:js fill-slot="javascript_head_slot"
-              tal:define="resources_url string:${context/portal_url}/++resource++wcfc">
-      <!-- The template to display files available for upload -->
-      <tal:templates tal:replace="structure view/jstemplates" />
-      <script type="text/javascript" src="++resource++wcfc/jquery.js"
-              tal:attributes="src string:${resources_url}/jquery.js"></script>
-      <script type="text/javascript" src="++resource++wcfc/js/jquery-ui.js"
-              tal:attributes="src string:${resources_url}/jquery-file-upload/js/jquery-ui.js"></script>
+    <!--<metal:js fill-slot="javascript_head_slot"-->
+              <!--tal:define="resources_url string:${context/portal_url}/++resource++pacfc">-->
+      <!--[> The template to display files available for upload <]-->
+      <!--<tal:templates tal:replace="structure view/jstemplates" />-->
+      <!--<script type="text/javascript" src="++resource++pacfc/jquery.js"-->
+              <!--tal:attributes="src string:${resources_url}/jquery.js"></script>-->
+      <!--<script type="text/javascript" src="++resource++pacfc/js/jquery-ui.js"-->
+              <!--tal:attributes="src string:${resources_url}/jquery-file-upload/js/jquery-ui.js"></script>-->
 
-      <script type="text/javascript" src="++resource++wcfc/bootstrap/bootstrap.min.js"
-              tal:attributes="src string:${resources_url}/bootstrap/bootstrap.min.js"></script>
-      <script src="http://blueimp.github.com/JavaScript-Templates/tmpl.min.js"
-              tal:attributes="src string:${resources_url}/jquery-file-upload/js/tmpl.min.js"></script>
-      <!-- The Load Image plugin is included for the preview images and image resizing functionality -->
-      <script src="http://blueimp.github.com/JavaScript-Load-Image/load-image.min.js"
-              tal:attributes="src string:${resources_url}/jquery-file-upload/js/load-image.min.js"></script>
-      <!-- The Canvas to Blob plugin is included for image resizing functionality -->
-      <script src="http://blueimp.github.com/JavaScript-Canvas-to-Blob/canvas-to-blob.min.js"
-              tal:attributes="src string:${resources_url}/jquery-file-upload/js/canvas-to-blob.min.js"></script>
-      <!-- Bootstrap JS and Bootstrap Image Gallery are not required, but included for the demo -->
-      <script src="http://blueimp.github.com/cdn/js/bootstrap.min.js"
-              tal:attributes="src string:${resources_url}/jquery-file-upload/js/bootstrap.min.js"></script>
-      <script src="http://blueimp.github.com/Bootstrap-Image-Gallery/js/bootstrap-image-gallery.min.js"
-              tal:attributes="src string:${resources_url}/jquery-file-upload/js/bootstrap-image-gallery.min.js"></script>
-      <!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
-      <script src="js/jquery.iframe-transport.js"
-              tal:attributes="src string:${resources_url}/jquery-file-upload/js/jquery.iframe-transport.js"></script>
-      <!-- The basic File Upload plugin -->
-      <script src="js/jquery.fileupload.js"
-              tal:attributes="src string:${resources_url}/jquery-file-upload/js/jquery.fileupload.js"></script>
-      <!-- The File Upload file processing plugin -->
-      <script src="js/jquery.fileupload-fp.js"
-              tal:attributes="src string:${resources_url}/jquery-file-upload/js/jquery.fileupload-fp.js"></script>
-      <!-- The File Upload user interface plugin -->
-      <script src="js/jquery.fileupload-ui.js"
-              tal:attributes="src string:${resources_url}/jquery-file-upload/js/jquery.fileupload-ui.js"></script>
-      <!-- The localization script -->
-      <script src="locale.js"
-              tal:attributes="src string:${resources_url}/locale.js"></script>
-      <!-- The XDomainRequest Transport is included for cross-domain file deletion for IE8+ -->
+      <!--<script type="text/javascript" src="++resource++pacfc/bootstrap/bootstrap.min.js"-->
+              <!--tal:attributes="src string:${resources_url}/bootstrap/bootstrap.min.js"></script>-->
+      <!--<script src="http://blueimp.github.com/JavaScript-Templates/tmpl.min.js"-->
+              <!--tal:attributes="src string:${resources_url}/jquery-file-upload/js/tmpl.min.js"></script>-->
+      <!--[> The Load Image plugin is included for the preview images and image resizing functionality <]-->
+      <!--<script src="http://blueimp.github.com/JavaScript-Load-Image/load-image.min.js"-->
+              <!--tal:attributes="src string:${resources_url}/jquery-file-upload/js/load-image.min.js"></script>-->
+      <!--[> The Canvas to Blob plugin is included for image resizing functionality <]-->
+      <!--<script src="http://blueimp.github.com/JavaScript-Canvas-to-Blob/canvas-to-blob.min.js"-->
+              <!--tal:attributes="src string:${resources_url}/jquery-file-upload/js/canvas-to-blob.min.js"></script>-->
+      <!--[> Bootstrap JS and Bootstrap Image Gallery are not required, but included for the demo <]-->
+      <!--<script src="http://blueimp.github.com/cdn/js/bootstrap.min.js"-->
+              <!--tal:attributes="src string:${resources_url}/jquery-file-upload/js/bootstrap.min.js"></script>-->
+      <!--<script src="http://blueimp.github.com/Bootstrap-Image-Gallery/js/bootstrap-image-gallery.min.js"-->
+              <!--tal:attributes="src string:${resources_url}/jquery-file-upload/js/bootstrap-image-gallery.min.js"></script>-->
+      <!--[> The Iframe Transport is required for browsers without support for XHR file uploads <]-->
+      <!--<script src="js/jquery.iframe-transport.js"-->
+              <!--tal:attributes="src string:${resources_url}/jquery-file-upload/js/jquery.iframe-transport.js"></script>-->
+      <!--[> The basic File Upload plugin <]-->
+      <!--<script src="js/jquery.fileupload.js"-->
+              <!--tal:attributes="src string:${resources_url}/jquery-file-upload/js/jquery.fileupload.js"></script>-->
+      <!--[> The File Upload file processing plugin <]-->
+      <!--<script src="js/jquery.fileupload-fp.js"-->
+              <!--tal:attributes="src string:${resources_url}/jquery-file-upload/js/jquery.fileupload-fp.js"></script>-->
+      <!--[> The File Upload user interface plugin <]-->
+      <!--<script src="js/jquery.fileupload-ui.js"-->
+              <!--tal:attributes="src string:${resources_url}/jquery-file-upload/js/jquery.fileupload-ui.js"></script>-->
+      <!--[> The localization script <]-->
+      <!--<script src="locale.js"-->
+              <!--tal:attributes="src string:${resources_url}/locale.js"></script>-->
+      <!--[> The XDomainRequest Transport is included for cross-domain file deletion for IE8+ <]-->
 
-      <tal:iefixstart replace="structure string:&lt;!--[if gte IE 8]&gt;" />
-      <script src="js/cors/jquery.xdr-transport.js"
-              tal:attributes="src string:${resources_url}/jquery-file-upload/js/cors/jquery.xdr-transport.js"></script>
-      <tal:iefixend replace="structure string:&lt;![endif]--&gt;" />
-      <script type="text/javascript" src="++resource++wcfc/integration.js"
-              tal:attributes="src string:${context/portal_url}/++resource++wcfc/integration.js"></script>
+      <!--<tal:iefixstart replace="structure string:&lt;!--[if gte IE 8]&gt;" />-->
+      <!--<script src="js/cors/jquery.xdr-transport.js"-->
+              <!--tal:attributes="src string:${resources_url}/jquery-file-upload/js/cors/jquery.xdr-transport.js"></script>-->
+      <!--<tal:iefixend replace="structure string:&lt;![endif]--&gt;" />-->
+      <!--<script type="text/javascript" src="++resource++pacfc/integration.js"-->
+              <!--tal:attributes="src string:${context/portal_url}/++resource++pacfc/integration.js"></script>-->
 
-    </metal:js>
+    <!--</metal:js>-->
   </head>
 
   <body>

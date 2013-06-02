@@ -10,25 +10,28 @@
         class=".adding.CMFAdding"
         permission="cmf.AddPortalContent"
         />
-
+      
     <!-- Folder contents -->
     <browser:page
-        for="*"
-        class=".foldercontents.FolderContentsView"
+        for="Products.CMFCore.interfaces._content.IFolderish"
+        class=".views.NewFolderContentsView"
         name="folder_contents"
         template="folder_contents.pt"
         permission="cmf.ListFolderContents" />
 
-    <browser:page
-         for="*"
-         class=".foldercontents.FolderContentsBrowserView"
-         attribute="update_table"
-         name="foldercontents_get_table"
-         permission="cmf.ListFolderContents" />
 
-    <browser:resource
-        file="folder_contents.js"
-        name="folder_contents.js" />
+    <browser:page
+        for="Products.CMFCore.interfaces._content.IFolderish"
+        class=".views.Move"
+        name="fcmove"
+        permission="cmf.ModifyPortalContent" />
+
+    <browser:page
+        for="Products.CMFCore.interfaces._content.IFolderish"
+        class=".views.Sort"
+        name="wcfcsort"
+        permission="cmf.ModifyPortalContent" />
+       
 
     <!-- Review list -->
     <browser:page
@@ -66,5 +69,6 @@
         name="plone.app.content.ValidAddableTypes"
         />
 
-
+  <adapter factory=".factories.ATCTFileFactory" />
+  <adapter factory=".factories.DXFileFactory" />
 </configure>

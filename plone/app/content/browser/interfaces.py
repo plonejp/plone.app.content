@@ -1,6 +1,7 @@
 # Zope imports
 from zope.interface import Interface
 from zope.viewlet.interfaces import IViewletManager
+from zope.filerepresentation.interfaces import IFileFactory
 
 
 class IFolderContentsView(Interface):
@@ -27,4 +28,18 @@ class IFolderContentsViewletManager(IViewletManager):
 class IContentsPage(Interface):
     """Marker interface which specifies that the current request is showing
     the "folder contents page" of the object.
+    """
+
+
+class ILayer(Interface):
+    pass
+
+
+class IATCTFileFactory(IFileFactory):
+    """ adapter factory for ATCT
+    """
+
+
+class IDXFileFactory(IFileFactory):
+    """ adapter factory for DX types
     """
