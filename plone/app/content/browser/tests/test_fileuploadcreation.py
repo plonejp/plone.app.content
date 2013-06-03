@@ -1,25 +1,28 @@
 import unittest2 as unittest
-from plone.app.content.testing import PLONE_APP_CONTENT_INTEGRATION_TESTING
-from plone.app.testing import TEST_USER_ID, TEST_USER_NAME
-from plone.app.testing import setRoles, login
-#import transaction
-#from plone.app.content.namechooser import ATTEMPTS
-#from zope.container.interfaces import INameChooser
+from plone.app.content.browser.interfaces import IATCTFileFactory
+from plone.app.content.browser.interfaces import IDXFileFactory
+from plone.app.content.browser.factories import ATCTFileFactory
+from plone.app.content.browser.factories import DXFileFactory
+from Products.CMFCore.interfaces._content import IFolderish
+from Products.ATContentTypes.interfaces import IATFile
+from Products.PloneTestCase import PloneTestCase as ptc
+
+ptc.setupPloneSite()
 
 
-class FileUploadCreationTest(unittest.TestCase):
-    layer = PLONE_APP_CONTENT_INTEGRATION_TESTING
+class FileUploadCreationTest(ptc.PloneTestCase):
 
-    def setUp(self):
-        self.portal = self.layer['portal']
-        setRoles(self.portal, TEST_USER_ID, ['Manager'])
-        login(self.portal, TEST_USER_NAME)
+    def test_atctfile_factory(self):
+        factory = IATCTFileFactory(self.portal)
+        new_object = factory('at_file', 'File', None)
+        self.failUnless(IATFile.providedBy(new_object))
 
-    def test_dx_file_created(self):
-        self.fail()
-
-    def test_at_file_created(self):
-        self.fail()
+    def test_dxfile_factory(self):
+        """ force dexterity to be installed """
+        pass
+        #factory = IDXFileFactory(self.portal)
+        #new_object = factory('dx_file', 'File', None)
+        #self.failUnless(IATFile.providedBy(new_object))
 
 def test_suite():
     return unittest.makeSuite(FileUploadCreationTest)
