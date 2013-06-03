@@ -69,6 +69,6 @@
         name="plone.app.content.ValidAddableTypes"
         />
 
-  <adapter factory=".factories.ATCTFileFactory" />
-  <adapter factory=".factories.DXFileFactory" />
+    <adapter factory=".factories.ATCTFileFactory" />
+    <adapter factory=".factories.DXFileFactory" />
 </configure>
