@@ -37,34 +37,39 @@
 
         <metal:addlist define-macro="addlist">
 
-            <form name="quickAdd" method="post"
-                tal:attributes="action string:${context/absolute_url}/@@folder_factories">
+          <form name="quickAdd" method="post"
+              tal:attributes="action string:${context/absolute_url}/@@folder_factories">
+            <tal:typelist repeat="item view/addable_types">
+              <div class="field">
+                <input type="radio" name="id"
+                       tal:attributes="value item/id;
+                                       id string:form-field-${item/extra/id}" />
+                <label tal:attributes="class string:contenttype-${item/extra/id};
+                                       for string:form-field-${item/extra/id};">
+                  <img tal:attributes="src item/icon" alt="" />
+                  <span tal:replace="item/title">Type title</span>
+                </label>
+                <span class="discreet" tal:content="item/description">Type description</span>
+              </div>
+            </tal:typelist>
+            <div class="field" id="formfield-add-to-folder-container">
+              <label for="formfield-add-to-folder" class="horizontal">
+                Add to
+                <span class="formHelp">Folder to add content to.</span>
+              </label>
+              <div class="fieldErrorBox"></div>
+              <input id="formfield-add-to-folder" type="text" name="folder" value="${view/current_folder}"/>
+            </div>
 
-                <ul class="folder-factories">
-                    <tal:typelist repeat="item view/addable_types">
-                        <li>
-                            <input type="radio" name="url"
-                                   tal:attributes="value item/action;
-                                                   id string:form-field-${item/extra/id}" />
-                            <label tal:attributes="class string:contenttype-${item/extra/id};
-                                                   for string:form-field-${item/extra/id};">
-                                <img tal:attributes="src item/icon" alt="" />
-                                <span tal:replace="item/title">Type title</span>
-                            </label>
-                            <span class="discreet" tal:content="item/description">Type description</span>
-                        </li>
-                    </tal:typelist>
-                </ul>
-
-                <div class="formControls">
-                    <input class="context"
-                          type="submit"
-                          value="Add"
-                          name="form.button.Add"
-                          i18n:attributes="value label_add"
-                          />
-                </div>
-            </form>
+            <div class="formControls">
+              <input class="context"
+                     type="submit"
+                     value="Add"
+                     name="form.button.Add"
+                     i18n:attributes="value label_add"
+                     />
+            </div>
+          </form>
         </metal:addlist>
     </div>
 
