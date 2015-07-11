@@ -26,7 +26,7 @@ class FolderFactoriesView(BrowserView):
     """
 
     def __call__(self):
-        if 'form.button.Add' in self.request.form:
+        if 'form.button.Add' in self.request.form or self.request.REQUEST_METHOD == 'POST':
             return self.redirect_to_add_form()
         else:
             return self.index()
