@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 from Acquisition import aq_inner
+from zope.component import getUtility
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone import PloneMessageFactory as _
 from Products.Five.browser import BrowserView
 from Products.statusmessages.interfaces import IStatusMessage
+from plone.registry.interfaces import IRegistry
 from zope.component import getMultiAdapter
 
 
@@ -91,9 +93,8 @@ class DefaultPageSelectionView(BrowserView):
         """ Return brains in this container that can be used as default_pages
         """
         context = aq_inner(self.context)
-        portal_properties = getToolByName(context, 'portal_properties')
-        sp = portal_properties.site_properties
-        view_types = sp.getProperty('typesUseViewActionInListings', [])
+        registry = getUtility(IRegistry)
+        view_types = registry.get('plonetypes_use_view_action_in_listings')
         default_page_types = sp.getProperty('default_page_types', [])
         portal_types = getToolByName(self.context, 'portal_types')
 
