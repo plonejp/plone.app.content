@@ -55,7 +55,7 @@ class ReviewListTable(object):
 
         registry = getUtility(IRegistry)
         use_view_action = registry.get(
-            'plone.types_use_view_action_in_listings')
+            'plone.types_use_view_action_in_listings', ())
 
         browser_default = self.context.browserDefault()
 

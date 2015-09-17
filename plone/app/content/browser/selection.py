@@ -94,7 +94,8 @@ class DefaultPageSelectionView(BrowserView):
         """
         context = aq_inner(self.context)
         registry = getUtility(IRegistry)
-        view_types = registry.get('plonetypes_use_view_action_in_listings')
+        view_types = registry.get('plonetypes_use_view_action_in_listings', ())
+        sp = context.portal_properties.site_properties
         default_page_types = sp.getProperty('default_page_types', [])
         portal_types = getToolByName(self.context, 'portal_types')
 
