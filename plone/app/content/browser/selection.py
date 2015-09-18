@@ -67,13 +67,13 @@ class DefaultPageSelectionView(BrowserView):
 
     def __call__(self):
         if 'form.buttons.Save' in self.request.form:
-            if not 'objectId' in self.request.form:
+            if 'objectId' not in self.request.form:
                 message = _(u'Please select an item to use.')
                 msgtype = 'error'
             else:
                 objectId = self.request.form['objectId']
 
-                if not objectId in self.context.objectIds():
+                if objectId not in self.context.objectIds():
                     message = _(u'There is no object with short name ${name} '
                                 u'in this folder.',
                                 mapping={u'name': objectId})
@@ -94,9 +94,9 @@ class DefaultPageSelectionView(BrowserView):
         """
         context = aq_inner(self.context)
         registry = getUtility(IRegistry)
-        view_types = registry.get('plonetypes_use_view_action_in_listings', ())
-        sp = context.portal_properties.site_properties
-        default_page_types = sp.getProperty('default_page_types', [])
+        view_types = registry.get(
+            'plone.types_use_view_action_in_listings', [])
+        default_page_types = registry.get('plone.default_page_types', [])
         portal_types = getToolByName(self.context, 'portal_types')
 
         results = []
