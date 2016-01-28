@@ -23,6 +23,7 @@ from zope.globalrequest import setRequest
 from zope.interface import Interface
 from zope.interface import alsoProvides
 from zope.interface import noLongerProvides
+from Products.CMFCore.indexing import processQueue
 
 import json
 import transaction
@@ -187,6 +188,7 @@ class BrowserTest(unittest.TestCase):
         self.portal.invokeFactory('Document', id="page", title="page")
         self.portal.page.subject = (test_val,)
         self.portal.page.reindexObject(idxs=['Subject'])
+        processQueue()
 
         self.request.form['name'] = 'plone.app.vocabularies.Keywords'
         results = getMultiAdapter(
